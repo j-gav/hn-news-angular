@@ -1,4 +1,4 @@
-export const HN_NEWS_API_URL = '';
-export const HN_NEWS_API_VERSION = '';
-export const HN_NEWS_API_BASE_URL = `${HN_NEWS_API_URL}/${HN_NEWS_API_VERSION}`;
-export const HN_NEWS_API_STORIES_URL = `${HN_NEWS_API_BASE_URL}/stories`;
+export const HN_NEWS_API_BASE_URL = 'https://hacker-news.firebaseio.com/v0';
+export const HN_NEWS_API_TOP_STORIES_URL = `${HN_NEWS_API_BASE_URL}/topstories.json`;
+export const HN_NEWS_API_NEW_STORIES_URL = `${HN_NEWS_API_BASE_URL}/newstories.json`;
+export const HN_NEWS_API_BEST_STORIES_URL = `${HN_NEWS_API_BASE_URL}/beststories.json`;

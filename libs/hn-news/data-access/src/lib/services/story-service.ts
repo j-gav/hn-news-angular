@@ -1,24 +1,25 @@
-import { Story } from '@hn-news/hn-news-model';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { HN_NEWS_API_TOP_STORIES_URL } from '@hn-news/hn-news-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoryService {
-  private stories: Story[] = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-  ];
+  private storiesSubject = new BehaviorSubject<string[]>([]);
+  private apiUrl = new BehaviorSubject<string>(HN_NEWS_API_TOP_STORIES_URL);
+  private http = inject(HttpClient);
 
-  getStories: Observable<Story[]> = new Observable((subscriber) => {
-    subscriber.next(this.stories);
+  public stories$: Observable<string[]> = this.storiesSubject.asObservable();
 
-    setInterval(() => {
-      subscriber.next(this.stories.reverse());
-    }, 2000);
-  });
+  constructor() {
+    this.apiUrl.pipe(switchMap((apiUrl) => this.http.get<string[]>(apiUrl))).subscribe((stories) => {
+      this.storiesSubject.next(stories);
+    });
+  }
+
+  setApiUrl(apiUrl: string): void {
+    this.apiUrl.next(apiUrl);
+  }
 }
