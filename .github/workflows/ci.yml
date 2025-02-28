@@ -30,6 +30,7 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - run: npm i -g nx
       - run: npm ci --legacy-peer-deps
       - run: npx playwright install --with-deps
       - uses: nrwl/nx-set-shas@v4
