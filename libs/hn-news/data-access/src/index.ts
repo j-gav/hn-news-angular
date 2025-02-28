@@ -1,1 +1,1 @@
-export * from './lib/injectables';
+export * from './lib/services';

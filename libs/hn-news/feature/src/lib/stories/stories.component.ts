@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoriesInjectable } from '@hn-news/hn-news-data-access';
+import { StoryService } from '@hn-news/hn-news-data-access';
 import { Story } from '@hn-news/hn-news-model';
 
 @Component({
@@ -13,16 +13,9 @@ import { Story } from '@hn-news/hn-news-model';
 export class StoriesComponent implements OnInit {
   public isFetchingData = false;
   public storyIds: Story[] = [];
+  private storyService = inject(StoryService);
 
   ngOnInit() {
-    console.log(
-      'StoriesComponent init complete, here we should fetch the stories data from the data-access lib'
-    );
-
-    StoriesInjectable.subscribe((stories: Story[]) => {
-      console.log('stories', stories);
-    });
-
-    //this.storyIds = [{ id: 1 }, { id: 2 }];
+    this.storyIds = this.storyService.getStories();
   }
 }
