@@ -15,11 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hn-news-angular/hn-news-data-access": [
-        "libs/hn-news/data-access/src/index.ts"
-      ],
-      "@hn-news-angular/hn-news-feature": ["libs/hn-news/feature/src/index.ts"],
-      "@hn-news-angular/hn-news-util": ["libs/hn-news/util/src/index.ts"]
+      "@hn-news/hn-news-data-access": ["libs/hn-news/data-access/src/index.ts"],
+      "@hn-news/hn-news-feature": ["libs/hn-news/feature/src/index.ts"],
+      "@hn-news/hn-news-util": ["libs/hn-news/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

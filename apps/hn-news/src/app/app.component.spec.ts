@@ -14,13 +14,13 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome hn-news-angular'
+      'Welcome hn-news'
     );
   });
 
-  it(`should have as title 'hn-news-angular'`, () => {
+  it(`should have as title 'hn-news'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('hn-news-angular');
+    expect(app.title).toEqual('hn-news');
   });
 });
