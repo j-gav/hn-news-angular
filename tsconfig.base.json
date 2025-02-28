@@ -18,7 +18,8 @@
       "@hn-news/hn-news-data-access": ["libs/hn-news/data-access/src/index.ts"],
       "@hn-news/hn-news-feature": ["libs/hn-news/feature/src/index.ts"],
       "@hn-news/hn-news-model": ["libs/hn-news/model/src/index.ts"],
-      "@hn-news/hn-news-util": ["libs/hn-news/util/src/index.ts"]
+      "@hn-news/hn-news-util": ["libs/hn-news/util/src/index.ts"],
+      "@hn-news/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

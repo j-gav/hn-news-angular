@@ -7,16 +7,27 @@ import { HN_NEWS_API_TOP_STORIES_URL } from '@hn-news/hn-news-model';
   providedIn: 'root',
 })
 export class StoryService {
-  private storiesSubject = new BehaviorSubject<string[]>([]);
-  private apiUrl = new BehaviorSubject<string>(HN_NEWS_API_TOP_STORIES_URL);
   private http = inject(HttpClient);
 
+  private storiesSubject = new BehaviorSubject<string[]>([]);
+  private loadingStatus = new BehaviorSubject<boolean>(false);
+  private apiUrl = new BehaviorSubject<string>(HN_NEWS_API_TOP_STORIES_URL);
+
   public stories$: Observable<string[]> = this.storiesSubject.asObservable();
+  public isLoading$: Observable<boolean> = this.loadingStatus.asObservable();
 
   constructor() {
-    this.apiUrl.pipe(switchMap((apiUrl) => this.http.get<string[]>(apiUrl))).subscribe((stories) => {
-      this.storiesSubject.next(stories);
-    });
+    this.apiUrl
+      .pipe(
+        switchMap((url: string) => {
+          this.loadingStatus.next(true);
+          return this.http.get<string[]>(url);
+        })
+      )
+      .subscribe((stories: string[]) => {
+        this.storiesSubject.next(stories);
+        this.loadingStatus.next(false);
+      });
   }
 
   setApiUrl(apiUrl: string): void {

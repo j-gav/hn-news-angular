@@ -5,7 +5,9 @@
     <option [value]="HN_NEWS_API_BEST_STORIES_URL">Best Stories</option>
   </select>
 
-  <ul class="mt-10">
+  <shared-loader *ngIf="isFetchingData"></shared-loader>
+
+  <ul *ngIf="!isFetchingData" class="mt-10">
     <li *ngFor="let story of pagedStories">{{ story | json }}</li>
   </ul>
 </div>

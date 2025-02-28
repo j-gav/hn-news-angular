@@ -4,11 +4,12 @@ import { StoryService } from '@hn-news/hn-news-data-access';
 import { HN_NEWS_API_TOP_STORIES_URL } from '@hn-news/hn-news-model';
 import { HN_NEWS_API_NEW_STORIES_URL } from '@hn-news/hn-news-model';
 import { HN_NEWS_API_BEST_STORIES_URL } from '@hn-news/hn-news-model';
+import { LoaderComponent } from '@hn-news/shared-ui';
 
 @Component({
   selector: 'lib-stories',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoaderComponent],
   templateUrl: './stories.component.html',
   styleUrl: './stories.component.css',
 })
@@ -26,6 +27,10 @@ export class StoriesComponent implements OnInit {
     this.storyService.stories$.subscribe((stories) => {
       this.storyIds = stories;
       this.pagedStories = this.storyIds.splice(0, 10);
+    });
+
+    this.storyService.isLoading$.subscribe((isLoading) => {
+      this.isFetchingData = isLoading;
     });
   }
 
