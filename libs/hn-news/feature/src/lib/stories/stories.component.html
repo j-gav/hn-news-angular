@@ -7,7 +7,9 @@
 
   <shared-loader *ngIf="isFetchingData"></shared-loader>
 
-  <ul *ngIf="!isFetchingData" class="mt-10">
-    <li *ngFor="let story of pagedStories">{{ story | json }}</li>
-  </ul>
+  <section *ngIf="!isFetchingData" class="mt-10 grid grid-cols-4 gap-4">
+    <div *ngFor="let story of pagedStories">
+      <hn-story [storyId]="story"></hn-story>
+    </div>
+  </section>
 </div>

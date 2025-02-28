@@ -2,7 +2,7 @@
   "name": "hn-news-feature",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/hn-news/feature/src",
-  "prefix": "lib",
+  "prefix": "hn",
   "projectType": "library",
   "tags": [],
   "targets": {
