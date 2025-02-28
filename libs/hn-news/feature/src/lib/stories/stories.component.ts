@@ -16,6 +16,8 @@ export class StoriesComponent implements OnInit {
   private storyService = inject(StoryService);
 
   ngOnInit() {
-    this.storyIds = this.storyService.getStories();
+    this.storyService.getStories.subscribe((stories: Story[]) => {
+      this.storyIds = stories;
+    });
   }
 }
