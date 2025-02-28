@@ -1,27 +1,27 @@
 {
-  "name": "hn-news-angular",
+  "name": "hn-news",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/hn-news-angular/src",
+  "sourceRoot": "apps/hn-news/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/hn-news-angular",
-        "index": "apps/hn-news-angular/src/index.html",
-        "main": "apps/hn-news-angular/src/main.ts",
+        "outputPath": "dist/apps/hn-news",
+        "index": "apps/hn-news/src/index.html",
+        "main": "apps/hn-news/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/hn-news-angular/tsconfig.app.json",
+        "tsConfig": "apps/hn-news/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/hn-news-angular/public"
+            "input": "apps/hn-news/public"
           }
         ],
-        "styles": ["apps/hn-news-angular/src/styles.css"],
+        "styles": ["apps/hn-news/src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -55,10 +55,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "hn-news-angular:build:production"
+          "buildTarget": "hn-news:build:production"
         },
         "development": {
-          "buildTarget": "hn-news-angular:build:development"
+          "buildTarget": "hn-news:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -66,7 +66,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "hn-news-angular:build"
+        "buildTarget": "hn-news:build"
       }
     },
     "lint": {
@@ -76,13 +76,13 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/hn-news-angular/jest.config.ts"
+        "jestConfig": "apps/hn-news/jest.config.ts"
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "hn-news-angular:build",
+        "buildTarget": "hn-news:build",
         "port": 4200,
         "spa": true
       }

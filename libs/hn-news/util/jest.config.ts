@@ -1,8 +1,8 @@
 export default {
-  displayName: 'stories',
-  preset: '../../jest.preset.js',
+  displayName: 'hn-news-util',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/stories',
+  coverageDirectory: '../../../coverage/libs/hn-news/util',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

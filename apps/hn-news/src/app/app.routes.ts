@@ -5,6 +5,8 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     loadComponent: () =>
-      import('@hn-news-angular/stories').then((m) => m.StoriesComponent),
+      import('@hn-news-angular/hn-news-feature').then(
+        (m) => m.StoriesComponent
+      ),
   },
 ];
