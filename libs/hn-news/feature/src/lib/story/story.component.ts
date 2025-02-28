@@ -1,12 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StoryService } from '@hn-news/hn-news-data-access';
+import { Story } from '@hn-news/hn-news-model';
+import { Observable } from 'rxjs';
+import { LoaderComponent } from '@hn-news/shared-ui';
 
 @Component({
   selector: 'hn-story',
-  imports: [CommonModule],
+  imports: [CommonModule, LoaderComponent],
   templateUrl: './story.component.html',
   styleUrl: './story.component.css',
 })
-export class StoryComponent {
+export class StoryComponent implements OnInit {
   @Input() storyId!: string;
+  private storyService = new StoryService();
+  public isLoading = true;
+  public story$: Observable<Story> | null = null;
+
+  ngOnInit() {
+    console.log('get details for storyId', this.storyId);
+
+    this.story$ = this.storyService.getStoryDetails(this.storyId);
+
+    this.story$.subscribe({
+      next: () => (this.isLoading = false),
+      error: (err) => {
+        console.error('Error loading story:', err);
+        this.isLoading = false;
+      },
+    });
+  }
 }
