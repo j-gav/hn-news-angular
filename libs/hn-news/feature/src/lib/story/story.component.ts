@@ -16,6 +16,7 @@ export class StoryComponent implements OnInit {
   private storyService = new StoryService();
   public isLoading = true;
   public story$: Observable<Story> | null = null;
+  public timeAgo = '';
 
   ngOnInit() {
     console.log('get details for storyId', this.storyId);
@@ -23,7 +24,10 @@ export class StoryComponent implements OnInit {
     this.story$ = this.storyService.getStoryDetails(this.storyId);
 
     this.story$.subscribe({
-      next: () => (this.isLoading = false),
+      next: (story: Story) => {
+        this.timeAgo = story.time ? new Date(story.time * 1000).toLocaleString() : '';
+        this.isLoading = false;
+      },
       error: (err) => {
         console.error('Error loading story:', err);
         this.isLoading = false;
