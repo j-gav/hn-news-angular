@@ -35,7 +35,7 @@
   },
   "plugins": [
     {
-      "plugin": "@nx/playwright/plugin",
+      "plugin": "@nx/playwright",
       "options": {
         "targetName": "e2e"
       }
