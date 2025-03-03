@@ -1,16 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoriesService } from '@hn-news/hn-news-data-access';
-import { HN_NEWS_API_TOP_STORIES_URL } from '@hn-news/hn-news-model';
-import { HN_NEWS_API_NEW_STORIES_URL } from '@hn-news/hn-news-model';
-import { HN_NEWS_API_BEST_STORIES_URL } from '@hn-news/hn-news-model';
 import { LoaderComponent } from '@hn-news/shared-ui';
 import { StoryComponent } from '../story/story.component';
+import { FilterPaneComponent } from '../filter-pane/filter-pane.component';
 
 @Component({
   selector: 'hn-stories',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, StoryComponent],
+  imports: [CommonModule, LoaderComponent, StoryComponent, FilterPaneComponent],
   templateUrl: './stories.component.html',
   styleUrl: './stories.component.css',
 })
@@ -19,10 +17,6 @@ export class StoriesComponent implements OnInit {
   private storyIds: string[] = [];
   private StoriesService = inject(StoriesService);
   public pagedStories: string[] = [];
-
-  public HN_NEWS_API_TOP_STORIES_URL = HN_NEWS_API_TOP_STORIES_URL;
-  public HN_NEWS_API_NEW_STORIES_URL = HN_NEWS_API_NEW_STORIES_URL;
-  public HN_NEWS_API_BEST_STORIES_URL = HN_NEWS_API_BEST_STORIES_URL;
 
   ngOnInit() {
     this.StoriesService.stories$.subscribe((stories) => {
@@ -33,10 +27,5 @@ export class StoriesComponent implements OnInit {
     this.StoriesService.isLoading$.subscribe((isLoading) => {
       this.isFetchingData = isLoading;
     });
-  }
-
-  onApiChange(event: Event) {
-    const apiUrl = (event.target as HTMLSelectElement).value;
-    this.StoriesService.setApiUrl(apiUrl);
   }
 }
