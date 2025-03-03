@@ -31,7 +31,8 @@ jobs:
           cache: 'npm'
 
       - run: npm i -g nx
-      - run: npm i
+      - run: rm -rf node_modules package-lock.json
+      - run: npm install
       - run: npx playwright install --with-deps
       - uses: nrwl/nx-set-shas@v4
 
