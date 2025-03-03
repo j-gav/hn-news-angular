@@ -19,8 +19,6 @@ export class StoryComponent implements OnInit {
   public timeAgo = '';
 
   ngOnInit() {
-    console.log('get details for storyId', this.storyId);
-
     this.story$ = this.storyService.getStoryDetails(this.storyId);
 
     this.story$.subscribe({

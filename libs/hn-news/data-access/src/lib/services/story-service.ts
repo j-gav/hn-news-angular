@@ -11,8 +11,6 @@ export class StoryService {
   private http = inject(HttpClient);
 
   public getStoryDetails(storyId: string): Observable<Story> {
-    console.log('Getting details for', storyId);
-
     return this.http.get<Story>(`${HN_NEWS_API_STORY_URL}/${storyId}.json`);
   }
 }
